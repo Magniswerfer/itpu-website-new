@@ -46,7 +46,7 @@ Farvearket angiver HEX `#FFFFBF` for lysegul, men RGB 255-250-210 (= `#FFFAD2`);
 - **Maj** (Light, Regular, Bold) er hele partiets stemme. Overskrifter i Maj Bold — h1/h2 i versaler med linjeafstand 1,0; øvrige overskrifter ca. 1,2.
 - Maj har **ingen kursiv**: fremhæv med bold, STORE BOGSTAVER eller farve. `<em>` er derfor sat til bold.
 - Tekst er venstrestillet.
-- **Strike Black** (`.budskab`) bruges kun til store, korte budskaber — fx forsidens hero.
+- Store, korte budskaber (`.budskab`) — fx forsidens hero — sættes i Maj Bold med versaler og linjeafstand 1,0.
 - Citater sættes med »guillemets« (`.quote`).
 
 ## Logo

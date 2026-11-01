@@ -50,9 +50,8 @@ Se [DESIGN.md](./DESIGN.md) og `/designsystem/` på sitet.
 ## Skrifter og logo
 
 - **Maj** er Enhedslistens egen skrift (ÅBC/Kontrapunkt), udgivet under en open source-licens, der giver partiets medlemmer ret til at bruge den uændret.
-- **Strike Black** bruges på enhedslisten.dk som kampagneskrift. Licensen er ikke afklaret, så filen er **ikke** committet (se `.gitignore`). Afklar licensen med Enhedslistens grafikere (grafisk@enhedslisten.dk); læg derefter `Strike-Black.woff2` i `public/fonts/` og fjern linjen i `.gitignore`. Uden filen falder store budskaber tilbage til Maj Bold.
 - Logo-filerne i `public/images/` er konverteret fra Enhedslistens officielle `.ai`-filer.
 
 ## Licens
 
-Koden er udgivet under GNU AGPL v3 — se [LICENSE](./LICENSE). Enhedslistens logo og skrifter er ikke omfattet af AGPL-licensen.
+Koden er udgivet under GNU AGPL v3 — se [LICENSE](./LICENSE). Enhedslistens logo og skriften Maj er ikke omfattet af AGPL-licensen.

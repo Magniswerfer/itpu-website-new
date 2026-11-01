@@ -418,13 +418,14 @@ a.card:hover .card__more .arrow {
   content: '«';
 }
 
-/* Budskab: kampagneskrift (Strike Black) */
+/* Budskab: store, korte budskaber i Maj Bold med versaler.
+   Designguiden: linjeafstand = skriftstørrelse. */
 .budskab {
-  font-family: var(--font-campaign);
-  font-weight: 900;
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
   text-transform: uppercase;
-  line-height: 0.95;
-  letter-spacing: 0;
+  line-height: var(--leading-caps);
+  letter-spacing: -0.01em;
 }
 
 /* Prosa (markdown) */
