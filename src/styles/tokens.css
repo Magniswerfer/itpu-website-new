@@ -18,7 +18,6 @@
   font-style: normal;
   font-display: swap;
 }
-/* Maj Regular: tilføj /fonts/Maj-Regular.woff2 og fjern kommentaren.
 @font-face {
   font-family: 'Maj';
   src: url('/fonts/Maj-Regular.woff2') format('woff2');
@@ -26,7 +25,6 @@
   font-style: normal;
   font-display: swap;
 }
-*/
 @font-face {
   font-family: 'Maj';
   src: url('/fonts/Maj-Bold.woff2') format('woff2');
@@ -81,7 +79,7 @@
   --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', 'Roboto Mono', Menlo, Consolas, monospace;
 
   --weight-light: 300;
-  --weight-regular: 300; /* → 400 når Maj Regular er tilføjet */
+  --weight-regular: 400;
   --weight-bold: 700;
 
   /* Flydende typeskala (360px → 1440px) */
