@@ -1,0 +1,87 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getNyheder, formatDato } from '../../lib/content';
+
+const nyheder = await getNyheder();
+---
+
+<Base title="Nyheder" description="Nyheder fra Enhedslistens IT-politiske udvalg.">
+  <header class="page-head surface--yellow">
+    <div class="container stack" style="--stack: var(--space-5)">
+      <span class="box">ITPU</span>
+      <h1>Nyheder</h1>
+      <p class="lead">Nyt fra udvalgets arbejde med IT-politik, digitalisering og teknologi.</p>
+    </div>
+  </header>
+  <section class="section">
+    <div class="container">
+      {
+        nyheder.length === 0 ? (
+          <p>Der er ingen nyheder endnu.</p>
+        ) : (
+          <ul class="list">
+            {nyheder.map((n) => (
+              <li>
+                <a class="item" href={`/nyheder/${n.id}/`}>
+                  <time class="meta" datetime={n.data.date.toISOString()}>
+                    {formatDato(n.data.date)}
+                  </time>
+                  <div class="stack" style="--stack: var(--space-3)">
+                    <h2 class="item__title">{n.data.title}</h2>
+                    <p>{n.data.resume}</p>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-head {
+    padding-block: clamp(3rem, 2rem + 4vw, 6rem);
+  }
+  .page-head h1 {
+    color: var(--el-red);
+  }
+  .list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: var(--border) solid var(--el-ink);
+  }
+  .list li {
+    border-bottom: var(--border) solid var(--el-line);
+  }
+  .item {
+    display: grid;
+    gap: var(--space-3);
+    padding-block: var(--space-6);
+    color: var(--el-ink);
+    text-decoration: none;
+  }
+  @media (min-width: 48rem) {
+    .item {
+      grid-template-columns: 12rem 1fr;
+      gap: var(--space-6);
+    }
+  }
+  .item:hover {
+    color: var(--el-ink);
+  }
+  .item:hover .item__title {
+    color: var(--el-red);
+  }
+  .item__title {
+    font-size: var(--text-xl);
+    text-transform: none;
+    line-height: 1.15;
+    max-width: 32ch;
+  }
+  .item p {
+    max-width: 60ch;
+  }
+</style>

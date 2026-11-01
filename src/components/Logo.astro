@@ -1,0 +1,79 @@
+---
+/**
+ * ITPU-logo efter Enhedslistens skabelon for lokalafdelinger
+ * (Designguide 2.0, s. 6): markør + navnetræk + en tredje kasse med navnet.
+ *
+ * Proportioner, målt i det officielle navnetræk (140 enheder højt):
+ *   - E-højde:            79,3 / 140 = 0,566 → højden på navnekassen
+ *   - Bredde på E-stamme: 15,6 / 140 = 0,112 → afstand mellem elementerne
+ *   - Markøren er lige så høj som navnetræk + afstand + navnekasse.
+ */
+interface Props {
+  /** Højden på navnetrækket "ENHEDSLISTEN" */
+  size?: string;
+  /** Vis markøren (Ø) til venstre */
+  marker?: boolean;
+  /** Teksten i den tredje kasse */
+  name?: string;
+  href?: string | null;
+}
+const { size = '1.75rem', marker = true, name = 'IT-politisk udvalg', href = '/' } = Astro.props;
+const Tag = href ? 'a' : 'div';
+---
+
+<Tag
+  href={href ?? undefined}
+  class:list={['itpu-logo', { 'itpu-logo--marker': marker }]}
+  style={`--h: ${size}`}
+  aria-label={href ? `Enhedslisten – ${name}, til forsiden` : `Enhedslisten – ${name}`}
+  role={href ? undefined : 'img'}
+>
+  {marker && <img class="itpu-logo__marker" src="/images/enhedslisten-markoer.svg" alt="" />}
+  <span class="itpu-logo__stack">
+    <img class="itpu-logo__name" src="/images/enhedslisten-logo.svg" alt="" />
+    <span class="itpu-logo__unit" aria-hidden="true">{name}</span>
+  </span>
+</Tag>
+
+<style>
+  .itpu-logo {
+    --gap: calc(var(--h) * 0.112);
+    --unit: calc(var(--h) * 0.566);
+    display: inline-flex;
+    align-items: flex-start;
+    gap: var(--gap);
+    text-decoration: none;
+    line-height: 0;
+  }
+  .itpu-logo__marker {
+    width: calc(var(--h) + var(--gap) + var(--unit));
+    height: calc(var(--h) + var(--gap) + var(--unit));
+  }
+  .itpu-logo__stack {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--gap);
+  }
+  .itpu-logo__name {
+    height: var(--h);
+    width: auto;
+    aspect-ratio: 622 / 140;
+  }
+  .itpu-logo__unit {
+    display: inline-flex;
+    align-items: center;
+    height: var(--unit);
+    padding: 0 calc(var(--h) * 0.233);
+    background: var(--el-red);
+    color: var(--el-white);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: calc(var(--h) * 0.46);
+    line-height: 1;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding-top: calc(var(--h) * 0.04);
+  }
+</style>

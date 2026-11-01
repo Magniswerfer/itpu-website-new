@@ -1,0 +1,88 @@
+---
+import Logo from './Logo.astro';
+import settings from '../data/settings.json';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer surface--green-dark">
+  <div class="container site-footer__grid">
+    <div class="stack" style="--stack: var(--space-5)">
+      <Logo size="1.6rem" />
+      <p class="site-footer__about">{settings.beskrivelse}</p>
+    </div>
+    <nav aria-label="Sidefod">
+      <h2 class="site-footer__h">Sitet</h2>
+      <ul>
+        <li><a href="/principprogram/">Principprogram</a></li>
+        <li><a href="/nyheder/">Nyheder</a></li>
+        <li><a href="/om/">Om udvalget</a></li>
+        <li><a href="/kommissorium/">Kommissorium</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h2 class="site-footer__h">Kontakt</h2>
+      <ul>
+        {settings.email && <li><a href={`mailto:${settings.email}`}>{settings.email}</a></li>}
+        {settings.kontaktperson && <li>Kontaktperson: {settings.kontaktperson}</li>}
+        <li><a href={settings.medlemsLink}>{settings.medlemsLinkTekst}</a></li>
+        {
+          settings.sociale.map((s: { navn: string; url: string }) => (
+            <li>
+              <a href={s.url} rel="me noopener">
+                {s.navn}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+  <div class="container site-footer__bottom">
+    <span>© {year} {settings.fuldtNavn}</span>
+    <span>Bygget med åben software · <a href="https://github.com/magniswerfer/itpu-website-new">Kildekode (AGPL)</a></span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding-top: var(--space-8);
+  }
+  .site-footer a {
+    text-decoration-color: rgb(255 255 255 / 0.4);
+  }
+  .site-footer__grid {
+    display: grid;
+    gap: var(--space-7);
+    padding-bottom: var(--space-8);
+  }
+  @media (min-width: 48rem) {
+    .site-footer__grid {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+  .site-footer__about {
+    max-width: 42ch;
+  }
+  .site-footer__h {
+    margin-bottom: var(--space-4);
+    font-size: var(--text-sm);
+    letter-spacing: 0.04em;
+  }
+  .site-footer ul {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .site-footer__bottom {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-3);
+    padding-block: var(--space-5);
+    border-top: 1px solid rgb(255 255 255 / 0.2);
+    font-size: var(--text-sm);
+  }
+</style>

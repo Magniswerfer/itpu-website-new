@@ -1,0 +1,32 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const side = await getEntry('sider', 'kommissorium');
+if (!side) throw new Error('Mangler src/content/sider/kommissorium.md');
+const { Content } = await render(side);
+---
+
+<Base title={side.data.title} description={side.data.undertitel}>
+  <header class="page-head surface--pink">
+    <div class="container stack" style="--stack: var(--space-5)">
+      <a class="box" href="/om/">← Om udvalget</a>
+      <h1>{side.data.title}</h1>
+      {side.data.undertitel && <p class="lead">{side.data.undertitel}</p>}
+    </div>
+  </header>
+  <section class="section">
+    <div class="container">
+      <div class="prose"><Content /></div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .page-head {
+    padding-block: clamp(3rem, 2rem + 4vw, 6rem);
+  }
+  .page-head h1 {
+    color: var(--el-green-dark);
+  }
+</style>
