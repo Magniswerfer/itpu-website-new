@@ -1,0 +1,49 @@
+---
+import { forside } from '../../data/site';
+import { principUrl } from '../../lib/links';
+import type { Princip } from '../../lib/types';
+import { toCifre } from '../../lib/format';
+import './home-hero.css';
+
+interface Props {
+  principper: Princip[];
+}
+
+const { principper } = Astro.props;
+---
+
+<section class="home-hero">
+  <div class="container home-hero__grid">
+    <div class="stack home-hero__text">
+      <span class="box">{forside.heroMaerkat}</span>
+      <h1 class="budskab home-hero__title">{forside.heroOverskrift}</h1>
+      <p class="lead">{forside.heroTekst}</p>
+      <div class="btn-row">
+        <a class="btn" href="/principprogram/">
+          {forside.heroKnap}{' '}
+          <span class="arrow" aria-hidden="true">
+            →
+          </span>
+        </a>
+        <a class="btn btn--outline" href="/om/">
+          Om udvalget
+        </a>
+      </div>
+    </div>
+    <nav class="home-hero__panel surface--red" aria-labelledby="hero-principper">
+      <h2 id="hero-principper" class="home-hero__panel-title">
+        Fem principper
+      </h2>
+      <ol class="home-hero__list">
+        {principper.map((princip) => (
+          <li class="home-hero__item">
+            <a class="home-hero__link" href={principUrl(princip)}>
+              <span class="home-hero__num">{toCifre(princip.data.order)}</span>
+              <span class="home-hero__label">{princip.data.title}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  </div>
+</section>

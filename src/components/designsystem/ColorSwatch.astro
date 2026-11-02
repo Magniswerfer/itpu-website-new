@@ -1,0 +1,22 @@
+---
+import type { Farve } from '../../data/palette';
+import './color-swatch.css';
+
+interface Props {
+  farve: Farve;
+  large?: boolean;
+}
+
+const { farve, large = false } = Astro.props;
+---
+
+<div
+  class:list={['color-swatch', { 'color-swatch--large': large, 'color-swatch--light-text': farve.lysTekst }]}
+  style={`background: var(${farve.token})`}
+>
+  <strong class="color-swatch__name">{farve.navn}</strong>
+  <span>HEX {farve.hex}</span>
+  <span>RGB {farve.rgb}</span>
+  {farve.pantone && <span>Pantone {farve.pantone}</span>}
+  <code class="color-swatch__token">var({farve.token})</code>
+</div>

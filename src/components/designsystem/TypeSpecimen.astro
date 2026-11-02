@@ -1,0 +1,33 @@
+---
+import DsSection from './DsSection.astro';
+import TypeRow from './TypeRow.astro';
+import './type-specimen.css';
+---
+
+<DsSection title="Skrift">
+  <p class="ds-section__intro">
+    Maj er Enhedslistens egen skrift og hele partiets stemme. Den findes i Light, Regular og Bold og har ingen kursiv —
+    fremhæv med <strong>bold</strong>, STORE BOGSTAVER eller <span class="highlight">farve</span>.
+  </p>
+  <TypeRow label="Budskab · Maj Bold, versaler">
+    <p class="budskab type-specimen__message">Offentlig kode</p>
+  </TypeRow>
+  <TypeRow label="H2 · Maj Bold, versaler">
+    <p class="type-specimen__h2">Privatliv frem for overvågning</p>
+  </TypeRow>
+  <TypeRow label="H3 · Maj Bold">
+    <p class="type-specimen__h3">IT for mennesker, ikke mennesker for IT</p>
+  </TypeRow>
+  <TypeRow label="Lead · Maj Regular">
+    <p class="lead">IT-politik er ikke bare teknik. Det er politik om magt, arbejde, frihed og demokrati.</p>
+  </TypeRow>
+  <TypeRow label="Brødtekst · Maj Regular">
+    <p class="type-specimen__body">
+      Offentlige IT-systemer skal bygges på åben software og åbne standarder, for at sikre uafhængighed og
+      medbestemmelse. Åben software er software som alle kan læse, køre, ændre og distribuere.
+    </p>
+  </TypeRow>
+  <TypeRow label="Citat">
+    <blockquote class="quote highlight">Mennesker skal ikke måles som tal og klik.</blockquote>
+  </TypeRow>
+</DsSection>

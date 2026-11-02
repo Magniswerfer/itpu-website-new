@@ -1,14 +1,19 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
 ---
 
 <Base title="Siden findes ikke">
-  <section class="section surface--blue-light">
-    <div class="container stack" style="--stack: var(--space-5)">
-      <span class="box">Fejl 404</span>
-      <h1 class="budskab" style="color: var(--el-red)">Siden findes ikke</h1>
-      <p class="lead">Siden er flyttet eller har aldrig eksisteret.</p>
-      <div class="btn-row"><a class="btn" href="/">Til forsiden</a></div>
+  <PageHeader
+    surface="blue-light"
+    eyebrow="Fejl 404"
+    title="Siden findes ikke"
+    lead="Siden er flyttet eller har aldrig eksisteret."
+  >
+    <div class="btn-row">
+      <a class="btn" href="/">
+        Til forsiden
+      </a>
     </div>
-  </section>
+  </PageHeader>
 </Base>

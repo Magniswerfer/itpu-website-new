@@ -1,0 +1,11 @@
+.page-header {
+  padding-block: clamp(3rem, 2rem + 4vw, 6rem);
+}
+
+.page-header__inner {
+  --stack: var(--space-5);
+}
+
+.page-header__title {
+  max-width: 18ch;
+}

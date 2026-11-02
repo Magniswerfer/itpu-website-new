@@ -1,0 +1,22 @@
+.surface-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: var(--space-4);
+}
+
+.surface-showcase__item {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-3);
+  padding: var(--space-6);
+}
+
+.surface-showcase__name {
+  font-size: var(--text-xl);
+  text-transform: uppercase;
+}
+
+.surface-showcase__class {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}

@@ -1,0 +1,19 @@
+.type-row {
+  display: grid;
+  gap: var(--space-3);
+  padding-block: var(--space-5);
+  border-bottom: 1px solid var(--el-line);
+}
+
+@media (width >= 56rem) {
+  .type-row {
+    grid-template-columns: 14rem 1fr;
+    align-items: baseline;
+  }
+}
+
+.type-row__label {
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}

@@ -1,0 +1,30 @@
+---
+import DsSection from './DsSection.astro';
+import Logo from '../ui/Logo.astro';
+import './logo-showcase.css';
+
+const usage = `<Logo />                  // fuldt logo med markør
+<Logo marker={false} />   // uden markør
+<Logo size="3rem" />      // størrelse = navnetrækkets højde`;
+---
+
+<DsSection title="Logo">
+  <p class="ds-section__intro">
+    ITPU bruger Enhedslistens skabelon for lokalafdelinger: markør, navnetræk og en tredje kasse med udvalgets navn.
+    Kassen er lige så høj som E'et i ENHEDSLISTEN, og afstanden mellem elementerne svarer til bredden af E'ets lodrette
+    streg. Størrelsesforholdet mellem de tre elementer må ikke ændres.
+  </p>
+  <div class="logo-showcase">
+    <div class="logo-showcase__item">
+      <Logo size="3.5rem" href={null} />
+    </div>
+    <div class="logo-showcase__item">
+      <Logo size="2.5rem" marker={false} href={null} />
+    </div>
+    <div class="logo-showcase__item">
+      <img class="logo-showcase__marker" src="/images/enhedslisten-markoer.svg" alt="Markør: Ø" />
+      <img class="logo-showcase__name" src="/images/enhedslisten-logo.svg" alt="Navnetræk: ENHEDSLISTEN" />
+    </div>
+  </div>
+  <pre class="ds-section__code"><code>{usage}</code></pre>
+</DsSection>

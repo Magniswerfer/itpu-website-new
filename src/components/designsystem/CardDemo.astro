@@ -1,0 +1,26 @@
+---
+const kort = [
+  {
+    flade: 'surface--white',
+    titel: 'Hvidt kort',
+    tekst: 'Standardkort med kant. Til lister af principper og indhold.',
+  },
+  { flade: 'surface--pink', titel: 'Rosa kort', tekst: 'Kort på en sekundær farve, til fremhævede henvisninger.' },
+  { flade: 'surface--red', titel: 'Rødt kort', tekst: 'Brug sparsomt — til det vigtigste budskab på siden.' },
+];
+---
+
+<div class="grid">
+  {kort.map((k) => (
+    <div class:list={['card', k.flade]}>
+      <h4 class="card__title">{k.titel}</h4>
+      <p class="card__text">{k.tekst}</p>
+      <span class="card__more">
+        Læs mere{' '}
+        <span class="arrow" aria-hidden="true">
+          →
+        </span>
+      </span>
+    </div>
+  ))}
+</div>

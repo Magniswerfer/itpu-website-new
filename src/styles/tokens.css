@@ -10,21 +10,23 @@
  */
 
 @font-face {
-  font-family: 'Maj';
+  font-family: Maj;
   src: url('/fonts/Maj-Light.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
-  font-family: 'Maj';
+  font-family: Maj;
   src: url('/fonts/Maj-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
-  font-family: 'Maj';
+  font-family: Maj;
   src: url('/fonts/Maj-Bold.woff2') format('woff2');
   font-weight: 700;
   font-style: normal;
@@ -47,7 +49,7 @@
   --el-ink: #1d1d1b;
   --el-ink-70: #55554f;
   --el-line: #dcdcd6;
-  --el-white: #ffffff;
+  --el-white: #fff;
   --el-red-dark: #a8003e; /* hover på rød */
   --el-green-text: #0b7a50; /* grøn tekst på hvid (AA) */
 
@@ -67,7 +69,6 @@
   --font-body: 'Maj', Helvetica, Arial, sans-serif;
   --font-display: 'Maj', Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', 'Roboto Mono', Menlo, Consolas, monospace;
-
   --weight-light: 300;
   --weight-regular: 400;
   --weight-bold: 700;
@@ -106,6 +107,7 @@
   --width-content: 78rem;
 
   /* ---------- Form ---------- */
+
   /* Logoet er bygget af rektangler; UI'et følger med skarpe hjørner. */
   --radius: 0;
   --border: 2px;

@@ -34,7 +34,14 @@ collections:
     summary: '{{title}} ({{date | date("YYYY-MM-DD")}})'
     fields:
       - { name: title, label: Overskrift, widget: string }
-      - { name: date, label: Dato, widget: datetime, time_format: false, date_format: 'YYYY-MM-DD', format: 'YYYY-MM-DD' }
+      - {
+          name: date,
+          label: Dato,
+          widget: datetime,
+          time_format: false,
+          date_format: 'YYYY-MM-DD',
+          format: 'YYYY-MM-DD',
+        }
       - { name: resume, label: Resumé, widget: text, hint: 'Kort tekst til lister og deling (1–2 sætninger).' }
       - { name: billede, label: Billede, widget: image, required: false }
       - { name: billedtekst, label: Billedtekst / alt-tekst, widget: string, required: false }

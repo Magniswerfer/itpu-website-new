@@ -1,0 +1,26 @@
+---
+import DsSection from './DsSection.astro';
+import ColorSwatch from './ColorSwatch.astro';
+import { primaereFarver, sekundaereFarver } from '../../data/palette';
+import './color-palette.css';
+---
+
+<DsSection title="Farver">
+  <p class="ds-section__intro">
+    Enhedslistens primære farver er rød og grøn — én af dem skal altid være til stede. De primære farver bruges til
+    overskrifter og effekter. De sekundære farver bruges til flader, kasser og baggrunde, og til tekst på rød eller grøn
+    bund. Undgå rød og grøn direkte op ad hinanden.
+  </p>
+  <h3 class="ds-section__subtitle">Primære</h3>
+  <div class="color-palette color-palette--primary">
+    {primaereFarver.map((farve) => (
+      <ColorSwatch farve={farve} large />
+    ))}
+  </div>
+  <h3 class="ds-section__subtitle">Sekundære</h3>
+  <div class="color-palette">
+    {sekundaereFarver.map((farve) => (
+      <ColorSwatch farve={farve} />
+    ))}
+  </div>
+</DsSection>

@@ -1,0 +1,9 @@
+dist/
+.astro/
+node_modules/
+package-lock.json
+public/images/
+public/fonts/
+# Indhold redigeres og formateres af Sveltia CMS
+src/content/
+src/data/*.json

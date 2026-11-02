@@ -1,0 +1,28 @@
+---
+import { nyhedUrl } from '../../lib/links';
+import type { Nyhed } from '../../lib/types';
+import { formatDato } from '../../lib/format';
+import './news-list.css';
+
+interface Props {
+  nyheder: Nyhed[];
+}
+
+const { nyheder } = Astro.props;
+---
+
+<ul class="news-list">
+  {nyheder.map((nyhed) => (
+    <li class="news-list__entry">
+      <a class="news-list__item" href={nyhedUrl(nyhed)}>
+        <time class="meta" datetime={nyhed.data.date.toISOString()}>
+          {formatDato(nyhed.data.date)}
+        </time>
+        <div class="stack news-list__body">
+          <h2 class="news-list__title">{nyhed.data.title}</h2>
+          <p class="news-list__summary">{nyhed.data.resume}</p>
+        </div>
+      </a>
+    </li>
+  ))}
+</ul>

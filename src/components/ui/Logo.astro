@@ -1,0 +1,36 @@
+---
+/**
+ * ITPU-logo efter Enhedslistens skabelon for lokalafdelinger
+ * (Designguide 2.0, s. 6): markør + navnetræk + en tredje kasse med navnet.
+ * Proportionerne er beskrevet i logo.css.
+ */
+import './logo.css';
+
+interface Props {
+  /** Højden på navnetrækket "ENHEDSLISTEN", fx "2rem". */
+  size?: string;
+  /** Vis markøren (Ø) til venstre. */
+  marker?: boolean;
+  /** Teksten i den tredje kasse. */
+  name?: string;
+  /** Link-mål. `null` giver et ikke-klikbart logo. */
+  href?: string | null;
+}
+
+const { size = '1.75rem', marker = true, name = 'IT-politisk udvalg', href = '/' } = Astro.props;
+const label = `Enhedslisten – ${name}`;
+const Tag = href ? 'a' : 'div';
+const tagProps = href
+  ? { href, 'aria-label': `${label}, til forsiden` }
+  : { role: 'img' as const, 'aria-label': label };
+---
+
+<Tag class="itpu-logo" style={`--logo-h: ${size}`} {...tagProps}>
+  {marker && <img class="itpu-logo__marker" src="/images/enhedslisten-markoer.svg" alt="" />}
+  <span class="itpu-logo__stack">
+    <img class="itpu-logo__name" src="/images/enhedslisten-logo.svg" alt="" />
+    <span class="itpu-logo__unit" aria-hidden="true">
+      {name}
+    </span>
+  </span>
+</Tag>

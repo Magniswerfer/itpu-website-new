@@ -1,0 +1,16 @@
+---
+import './type-row.css';
+
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<div class="type-row">
+  <span class="type-row__label">{label}</span>
+  <div>
+    <slot />
+  </div>
+</div>

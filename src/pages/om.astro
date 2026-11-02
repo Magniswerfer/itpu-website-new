@@ -1,7 +1,11 @@
 ---
 import { getEntry, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
-import settings from '../data/settings.json';
+import PageHeader from '../components/ui/PageHeader.astro';
+import ProseSection from '../components/ui/ProseSection.astro';
+import ContactDetails from '../components/ui/ContactDetails.astro';
+import { settings } from '../data/site';
+import './om.css';
 
 const side = await getEntry('sider', 'om');
 if (!side) throw new Error('Mangler src/content/sider/om.md');
@@ -9,130 +13,34 @@ const { Content } = await render(side);
 ---
 
 <Base title={side.data.title} description={side.data.undertitel}>
-  <header class="page-head surface--pink">
-    <div class="container stack" style="--stack: var(--space-5)">
-      <span class="box">ITPU</span>
-      <h1>{side.data.title}</h1>
-      {side.data.undertitel && <p class="lead">{side.data.undertitel}</p>}
-    </div>
-  </header>
-
-  <section class="section">
-    <div class="container">
-      <div class="prose"><Content /></div>
-    </div>
-  </section>
+  <PageHeader surface="pink" eyebrow="ITPU" title={side.data.title} lead={side.data.undertitel} />
+  <ProseSection>
+    <Content />
+  </ProseSection>
 
   <section id="vaer-med" class="section surface--green-light">
     <div class="container join">
       <h2>Vær med</h2>
-      <div class="stack" style="--stack: var(--space-5)">
+      <div class="stack join__body">
         <p class="lead">
           Er du medlem af Enhedslisten og interesseret i IT-politik? Så skriv til os — vi holder møder løbende og tager
           gerne imod nye kræfter.
         </p>
-        <dl class="contact">
-          {
-            settings.email && (
-              <div>
-                <dt>Udvalget</dt>
-                <dd><a href={`mailto:${settings.email}`}>{settings.email}</a></dd>
-              </div>
-            )
-          }
-          {
-            settings.kontaktperson && (
-              <div>
-                <dt>Kontaktperson</dt>
-                <dd>
-                  {settings.kontaktperson}
-                  {settings.kontaktEmail && (
-                    <>
-                      <br />
-                      <a href={`mailto:${settings.kontaktEmail}`}>{settings.kontaktEmail}</a>
-                    </>
-                  )}
-                  {settings.kontaktTelefon && (
-                    <>
-                      <br />
-                      <a href={`tel:+45${settings.kontaktTelefon.replace(/\s/g, '')}`}>Tlf. {settings.kontaktTelefon}</a>
-                    </>
-                  )}
-                </dd>
-              </div>
-            )
-          }
-        </dl>
+        <ContactDetails />
         <div class="btn-row">
-          {
-            settings.email && (
-              <a class="btn" href={`mailto:${settings.email}`}>
-                Skriv til udvalget <span class="arrow" aria-hidden="true">→</span>
-              </a>
-            )
-          }
-          <a class="btn btn--outline" href={settings.medlemsLink}>{settings.medlemsLinkTekst}</a>
+          {settings.email && (
+            <a class="btn" href={`mailto:${settings.email}`}>
+              Skriv til udvalget{' '}
+              <span class="arrow" aria-hidden="true">
+                →
+              </span>
+            </a>
+          )}
+          <a class="btn btn--outline" href={settings.medlemsLink}>
+            {settings.medlemsLinkTekst}
+          </a>
         </div>
       </div>
     </div>
   </section>
 </Base>
-
-<style>
-  .page-head {
-    padding-block: clamp(3rem, 2rem + 4vw, 6rem);
-  }
-  .page-head h1 {
-    color: var(--el-green-dark);
-  }
-  .contact {
-    display: grid;
-    gap: var(--space-5);
-    margin: var(--space-6) 0 var(--space-2);
-  }
-  @media (min-width: 40rem) {
-    .contact {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-  .contact dt {
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: var(--text-sm);
-    letter-spacing: 0.03em;
-    color: var(--el-green-text);
-  }
-  .contact dd {
-    margin: var(--space-1) 0 0;
-  }
-  .join {
-    display: grid;
-    gap: var(--space-6);
-  }
-  @media (min-width: 56rem) {
-    .contact {
-    display: grid;
-    gap: var(--space-5);
-    margin: var(--space-6) 0 var(--space-2);
-  }
-  @media (min-width: 40rem) {
-    .contact {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-  .contact dt {
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: var(--text-sm);
-    letter-spacing: 0.03em;
-    color: var(--el-green-text);
-  }
-  .contact dd {
-    margin: var(--space-1) 0 0;
-  }
-  .join {
-      grid-template-columns: 1fr 1.4fr;
-      gap: var(--space-8);
-    }
-  }
-</style>

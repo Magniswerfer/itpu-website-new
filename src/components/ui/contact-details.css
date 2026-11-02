@@ -1,0 +1,28 @@
+.contact-details {
+  display: grid;
+  gap: var(--space-5);
+
+  /* Topmargen styres af den omgivende .stack */
+  margin-inline: 0;
+  margin-bottom: 0;
+}
+
+@media (width >= 40rem) {
+  .contact-details {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contact-details__term {
+  color: var(--surface-heading, var(--el-green-text));
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.contact-details__value {
+  display: grid;
+  justify-items: start;
+  margin: var(--space-1) 0 0;
+}

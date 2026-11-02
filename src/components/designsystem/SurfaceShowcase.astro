@@ -1,0 +1,22 @@
+---
+import DsSection from './DsSection.astro';
+import { flader } from '../../data/palette';
+import './surface-showcase.css';
+---
+
+<DsSection title="Flader">
+  <p class="ds-section__intro">
+    Farvekombinationerne fra designguiden er samlet i <code>.surface--*</code>-klasser, der sætter baggrund, tekst,
+    overskrifter, links og accentfarve for alt indhold i fladen.
+  </p>
+  <div class="surface-showcase">
+    {flader.map((flade) => (
+      <div class:list={['surface-showcase__item', flade.klasse]}>
+        <span class="box">Kasse</span>
+        <h3 class="surface-showcase__name">{flade.navn}</h3>
+        <p>{flade.note}</p>
+        <code class="surface-showcase__class">.{flade.klasse}</code>
+      </div>
+    ))}
+  </div>
+</DsSection>

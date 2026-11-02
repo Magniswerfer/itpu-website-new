@@ -10,15 +10,15 @@ Designsystemet bygger på **Enhedslistens Designguide 2.0 (2024)** og Enhedslist
 
 Enhedslistens primære farver er **rød og grøn** — én af dem skal altid være til stede.
 
-| Navn | Token | HEX | RGB | Pantone |
-| --- | --- | --- | --- | --- |
-| Rød | `--el-red` | `#D0004D` | 208-0-78 | 7636C |
-| Grøn | `--el-green` | `#159F6B` | 21-160-107 | 2417C |
-| Rosa | `--el-pink` | `#F9D1D9` | 249-210-217 | |
-| Lysegrøn | `--el-green-light` | `#C8E2C2` | 200-226-194 | |
-| Lyseblå | `--el-blue-light` | `#BCE3FA` | 188-228-250 | |
-| Mørkegrøn | `--el-green-dark` | `#005247` | 0-83-71 | |
-| Lysegul | `--el-yellow` | `#FFFAD2` | 255-250-210 | |
+| Navn      | Token              | HEX       | RGB         | Pantone |
+| --------- | ------------------ | --------- | ----------- | ------- |
+| Rød       | `--el-red`         | `#D0004D` | 208-0-78    | 7636C   |
+| Grøn      | `--el-green`       | `#159F6B` | 21-160-107  | 2417C   |
+| Rosa      | `--el-pink`        | `#F9D1D9` | 249-210-217 |         |
+| Lysegrøn  | `--el-green-light` | `#C8E2C2` | 200-226-194 |         |
+| Lyseblå   | `--el-blue-light`  | `#BCE3FA` | 188-228-250 |         |
+| Mørkegrøn | `--el-green-dark`  | `#005247` | 0-83-71     |         |
+| Lysegul   | `--el-yellow`      | `#FFFAD2` | 255-250-210 |         |
 
 Farvearket angiver HEX `#FFFFBF` for lysegul, men RGB 255-250-210 (= `#FFFAD2`); vi bruger RGB-værdien.
 
@@ -31,15 +31,15 @@ Farvearket angiver HEX `#FFFFBF` for lysegul, men RGB 255-250-210 (= `#FFFAD2`);
 
 **Flader** (`.surface--*`) samler guidens kombinationer og sætter baggrund, tekst, overskrifter, links og accent:
 
-| Klasse | Kombination |
-| --- | --- |
-| `.surface--red` | Rød + hvid + lyseblå |
-| `.surface--green` | Grøn + hvid + mørkegrøn — hvid tekst på grøn kun i store, fede tekster (kontrast 3,3:1) |
-| `.surface--green-dark` | Mørkegrøn + lysegrøn |
-| `.surface--green-light` | Lysegrøn + rød |
-| `.surface--pink` | Rosa + mørkegrøn |
-| `.surface--yellow` | Lysegul + rød/grøn |
-| `.surface--blue-light` | Lyseblå + rød |
+| Klasse                  | Kombination                                                                             |
+| ----------------------- | --------------------------------------------------------------------------------------- |
+| `.surface--red`         | Rød + hvid + lyseblå                                                                    |
+| `.surface--green`       | Grøn + hvid + mørkegrøn — hvid tekst på grøn kun i store, fede tekster (kontrast 3,3:1) |
+| `.surface--green-dark`  | Mørkegrøn + lysegrøn                                                                    |
+| `.surface--green-light` | Lysegrøn + rød                                                                          |
+| `.surface--pink`        | Rosa + mørkegrøn                                                                        |
+| `.surface--yellow`      | Lysegul + rød/grøn                                                                      |
+| `.surface--blue-light`  | Lyseblå + rød                                                                           |
 
 ## Skrift
 
@@ -58,9 +58,9 @@ ITPU følger skabelonen for **lokalafdelinger**: markør (Ø) + navnetræk (ENHE
 - Markøren er lige så høj som navnetræk + afstand + navnekasse.
 
 ```astro
-<Logo />                  <!-- fuldt logo -->
-<Logo marker={false} />   <!-- uden markør -->
-<Logo size="3rem" />      <!-- størrelse = navnetrækkets højde -->
+<Logo /> <!-- fuldt logo -->
+<Logo marker={false} /> <!-- uden markør -->
+<Logo size="3rem" /> <!-- størrelse = navnetrækkets højde -->
 ```
 
 ## Komponenter

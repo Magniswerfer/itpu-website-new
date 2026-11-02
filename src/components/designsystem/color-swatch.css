@@ -1,0 +1,29 @@
+.color-swatch {
+  display: grid;
+  align-content: end;
+  gap: 0.15rem;
+  min-height: 11rem;
+  padding: var(--space-5);
+  color: var(--el-ink);
+  font-size: var(--text-sm);
+}
+
+.color-swatch--large {
+  min-height: 15rem;
+}
+
+.color-swatch--light-text {
+  color: var(--el-white);
+}
+
+.color-swatch__name {
+  margin-bottom: var(--space-2);
+  font-size: var(--text-lg);
+  text-transform: uppercase;
+}
+
+.color-swatch__token {
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}

@@ -1,11 +1,19 @@
 ---
+import type { GetStaticPaths } from 'astro';
 import { render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
-import { getNyheder, formatDato } from '../../lib/content';
+import ArticleHeader from '../../components/news/ArticleHeader.astro';
+import { getNyheder } from '../../lib/collections';
+import type { Nyhed } from '../../lib/types';
+import './article.css';
 
-export async function getStaticPaths() {
+export const getStaticPaths = (async () => {
   const nyheder = await getNyheder();
-  return nyheder.map((n) => ({ params: { id: n.id }, props: { nyhed: n } }));
+  return nyheder.map((nyhed) => ({ params: { id: nyhed.id }, props: { nyhed } }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  nyhed: Nyhed;
 }
 
 const { nyhed } = Astro.props;
@@ -14,54 +22,11 @@ const { Content } = await render(nyhed);
 
 <Base title={nyhed.data.title} description={nyhed.data.resume}>
   <article>
-    <header class="article-head">
-      <div class="container stack" style="--stack: var(--space-5)">
-        <a class="back" href="/nyheder/">← Alle nyheder</a>
-        <time class="box" datetime={nyhed.data.date.toISOString()}>{formatDato(nyhed.data.date)}</time>
-        <h1 class="article-title">{nyhed.data.title}</h1>
-        <p class="lead">{nyhed.data.resume}</p>
-      </div>
-    </header>
-    {
-      nyhed.data.billede && (
-        <figure class="container figure">
-          <img src={nyhed.data.billede} alt={nyhed.data.billedtekst ?? ''} />
-          {nyhed.data.billedtekst && <figcaption>{nyhed.data.billedtekst}</figcaption>}
-        </figure>
-      )
-    }
-    <div class="container article-body">
-      <div class="prose">
+    <ArticleHeader nyhed={nyhed} />
+    <div class="container">
+      <div class="prose article-body">
         <Content />
       </div>
     </div>
   </article>
 </Base>
-
-<style>
-  .article-head {
-    padding-block: clamp(2.5rem, 1.5rem + 4vw, 5rem) var(--space-6);
-  }
-  .back {
-    display: inline-block;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: var(--text-sm);
-    text-decoration: none;
-  }
-  .article-title {
-    max-width: 20ch;
-    font-size: var(--text-3xl);
-  }
-  .figure {
-    margin-block: var(--space-6);
-  }
-  .figure figcaption {
-    margin-top: var(--space-2);
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-  }
-  .article-body {
-    padding-bottom: var(--section-y);
-  }
-</style>

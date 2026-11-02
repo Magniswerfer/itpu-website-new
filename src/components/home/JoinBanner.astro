@@ -1,0 +1,21 @@
+---
+import { forside } from '../../data/site';
+import './join-banner.css';
+---
+
+<section class="section surface--green">
+  <div class="container join-banner">
+    <h2 class="budskab join-banner__title">{forside.meldDigOverskrift}</h2>
+    <div class="stack join-banner__body">
+      <p class="lead">{forside.meldDigTekst}</p>
+      <div class="btn-row">
+        <a class="btn btn--green" href="/om/#vaer-med">
+          Sådan bliver du aktiv{' '}
+          <span class="arrow" aria-hidden="true">
+            →
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
