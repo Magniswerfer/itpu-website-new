@@ -4,6 +4,6 @@
   "ignoreDependencies": [
     // Indlæses indirekte af eslint-plugin-astro via `flat/jsx-a11y-strict`
     // i eslint.config.js og importeres derfor aldrig direkte.
-    "eslint-plugin-jsx-a11y",
+    "eslint-plugin-jsx-a11y-x",
   ],
 }

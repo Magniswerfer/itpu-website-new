@@ -16,13 +16,13 @@ npm run check      # alle kvalitetstjek (køres også i CI)
 
 `npm run check` kører alle tjek og skal være grønt før merge. CI (`.github/workflows/ci.yml`) kører det samme på hver pull request.
 
-| Script         | Værktøj                                                                                                | Tjekker                                                                        |
-| -------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `check:types`  | `astro check` + TypeScript `strictest`                                                                 | Typer i `.ts`- og `.astro`-filer, inkl. templates                              |
-| `lint`         | ESLint: `typescript-eslint` strict + stylistic (typebaseret), `eslint-plugin-astro`, `jsx-a11y` strict | Fejl, usikre typer, tilgængelighed                                             |
-| `lint:css`     | Stylelint (`stylelint-config-standard`, BEM-klassenavne, ingen `!important`/id-selektorer)             | CSS                                                                            |
-| `format:check` | Prettier (+ Astro-plugin)                                                                              | Formatering. CMS-indhold er undtaget, så redigeringer i Sveltia ikke bryder CI |
-| `fallow`       | [fallow](https://fallow.tools) med `--fail-on-issues`                                                  | Død kode, ubrugte afhængigheder, duplikering, kompleksitet                     |
+| Script         | Værktøj                                                                                                                                 | Tjekker                                                                        |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `check:types`  | `astro check` + TypeScript `strictest`                                                                                                  | Typer i `.ts`- og `.astro`-filer, inkl. templates                              |
+| `lint`         | ESLint: `typescript-eslint` strict + stylistic (typebaseret), `eslint-plugin-astro`, `jsx-a11y` strict (via `eslint-plugin-jsx-a11y-x`) | Fejl, usikre typer, tilgængelighed                                             |
+| `lint:css`     | Stylelint (`stylelint-config-standard`, BEM-klassenavne, ingen `!important`/id-selektorer)                                              | CSS                                                                            |
+| `format:check` | Prettier (+ Astro-plugin)                                                                                                               | Formatering. CMS-indhold er undtaget, så redigeringer i Sveltia ikke bryder CI |
+| `fallow`       | [fallow](https://fallow.tools) med `--fail-on-issues`                                                                                   | Død kode, ubrugte afhængigheder, duplikering, kompleksitet                     |
 
 `npm run format` retter formateringen automatisk.
 
@@ -44,6 +44,13 @@ src/
   styles/          tokens.css (designtokens) og global.css (base + fælles komponenter)
   pages/           Ruter
 ```
+
+## Afhængigheder
+
+Alt kører på nyeste version, og Dependabot (`.github/dependabot.yml`) åbner ugentlige PR'er med opdateringer, som CI tjekker. To bevidste valg:
+
+- **TypeScript 6.** TypeScript 7 (den nye Go-version) har endnu ikke det JavaScript-API, som `typescript-eslint` og `astro check` bygger på; begge understøtter højst TypeScript 6. Dependabot foreslår opgraderingen, så snart værktøjerne følger med.
+- **`overrides.minimatch`.** ESLint og `typescript-eslint` afhænger af `minimatch` 10, som har en kendt sårbarhed (rettet i 11). API'et er det samme, så `package.json` tvinger version 11. Fjern overriden, når afhængighederne selv kræver 11.
 
 Hver komponent har sin CSS i en fil ved siden af (fx `Header.astro` + `header.css`) med BEM-klassenavne præfikset med komponentens navn.
 
@@ -76,7 +83,7 @@ Sitet skal genbygges efter hver ændring — sæt hosting op til at bygge automa
 
 - Byggekommando: `npm run build`
 - Output-mappe: `dist`
-- Node 22+
+- Node 26 (aktiv LTS, se `.nvmrc`)
 - Sæt miljøvariablen `SITE` til det endelige domæne (bruges til kanoniske URL'er og RSS), og opdater `site_url` i `public/admin/config.yml`.
 
 ## Designsystem
