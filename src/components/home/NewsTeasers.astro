@@ -1,0 +1,39 @@
+---
+import { nyhedUrl } from '../../lib/links';
+import type { Nyhed } from '../../lib/types';
+import { formatDato } from '../../lib/format';
+import './news-teasers.css';
+
+interface Props {
+  nyheder: Nyhed[];
+}
+
+const { nyheder } = Astro.props;
+---
+
+<section class="section surface--yellow">
+  <div class="container">
+    <header class="news-teasers__head">
+      <h2>Nyheder</h2>
+      <a class="btn btn--outline" href="/nyheder/">
+        Alle nyheder{' '}
+        <span class="arrow" aria-hidden="true">
+          →
+        </span>
+      </a>
+    </header>
+    <ul class="news-teasers">
+      {nyheder.map((nyhed) => (
+        <li>
+          <a class="news-teasers__item" href={nyhedUrl(nyhed)}>
+            <time class="meta" datetime={nyhed.data.date.toISOString()}>
+              {formatDato(nyhed.data.date)}
+            </time>
+            <h3 class="news-teasers__title">{nyhed.data.title}</h3>
+            <p>{nyhed.data.resume}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

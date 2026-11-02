@@ -1,0 +1,542 @@
+@import url('./tokens.css');
+
+/* =========================================================
+   Base
+   ========================================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Safari/iOS kræver præfiks */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 7rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Overskrifter: Maj Bold. h1/h2 i versaler som i designguiden. */
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-heading);
+  color: var(--surface-heading, var(--color-heading));
+  text-wrap: balance;
+}
+
+h1,
+h2 {
+  text-transform: uppercase;
+  line-height: var(--leading-caps);
+  letter-spacing: -0.005em;
+}
+
+h1 {
+  font-size: var(--text-4xl);
+}
+
+h2 {
+  font-size: var(--text-3xl);
+}
+
+h3 {
+  font-size: var(--text-xl);
+}
+
+h4 {
+  font-size: var(--text-lg);
+}
+
+p {
+  margin: 0;
+  text-wrap: pretty;
+}
+
+strong,
+b {
+  font-weight: var(--weight-bold);
+}
+
+/* Maj har ingen kursiv — fremhæv med bold */
+em,
+i {
+  font-style: normal;
+  font-weight: var(--weight-bold);
+}
+
+a {
+  color: var(--surface-link, var(--color-link));
+  text-decoration-thickness: 0.09em;
+  text-underline-offset: 0.18em;
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+a:hover {
+  color: var(--surface-link-hover, var(--color-link-hover));
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus-ring);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px var(--color-focus);
+}
+
+::selection {
+  background: var(--el-red);
+  color: var(--el-white);
+}
+
+/* =========================================================
+   Flader (farvekombinationer fra designguiden)
+   Hver flade sætter: baggrund, tekst, overskrift og accent.
+   ========================================================= */
+.surface--white {
+  --surface-bg: var(--el-white);
+  --surface-fg: var(--el-ink);
+  --surface-accent: var(--el-red);
+  --surface-accent-fg: var(--el-white);
+}
+
+/* Rød + hvid + lyseblå */
+.surface--red {
+  --surface-bg: var(--el-red);
+  --surface-fg: var(--el-white);
+  --surface-heading: var(--el-white);
+  --surface-accent: var(--el-blue-light);
+  --surface-accent-fg: var(--el-ink);
+  --surface-link: var(--el-white);
+  --surface-link-hover: var(--el-blue-light);
+}
+
+/* Grøn + hvid + mørkegrøn (hvid tekst på grøn kun i store, fede tekster) */
+.surface--green {
+  --surface-bg: var(--el-green);
+  --surface-fg: var(--el-white);
+  --surface-heading: var(--el-white);
+  --surface-accent: var(--el-green-dark);
+  --surface-accent-fg: var(--el-white);
+  --surface-link: var(--el-white);
+  --surface-link-hover: var(--el-green-light);
+}
+
+/* Mørkegrøn + lysegrøn */
+.surface--green-dark {
+  --surface-bg: var(--el-green-dark);
+  --surface-fg: var(--el-white);
+  --surface-heading: var(--el-green-light);
+  --surface-accent: var(--el-green-light);
+  --surface-accent-fg: var(--el-green-dark);
+  --surface-link: var(--el-white);
+  --surface-link-hover: var(--el-green-light);
+}
+
+/* Lysegrøn + rød */
+.surface--green-light {
+  --surface-bg: var(--el-green-light);
+  --surface-fg: var(--el-ink);
+  --surface-heading: var(--el-red);
+  --surface-accent: var(--el-red);
+  --surface-accent-fg: var(--el-white);
+}
+
+/* Rosa + grøn */
+.surface--pink {
+  --surface-bg: var(--el-pink);
+  --surface-fg: var(--el-ink);
+  --surface-heading: var(--el-green-dark);
+  --surface-accent: var(--el-green-dark);
+  --surface-accent-fg: var(--el-white);
+  --surface-link: var(--el-green-dark);
+  --surface-link-hover: var(--el-ink);
+}
+
+/* Lysegul + rød/grøn */
+.surface--yellow {
+  --surface-bg: var(--el-yellow);
+  --surface-fg: var(--el-ink);
+  --surface-heading: var(--el-green-text);
+  --surface-accent: var(--el-red);
+  --surface-accent-fg: var(--el-white);
+}
+
+/* Lyseblå + rød */
+.surface--blue-light {
+  --surface-bg: var(--el-blue-light);
+  --surface-fg: var(--el-ink);
+  --surface-heading: var(--el-red);
+  --surface-accent: var(--el-red);
+  --surface-accent-fg: var(--el-white);
+}
+
+[class*='surface--'] {
+  background: var(--surface-bg);
+  color: var(--surface-fg);
+}
+
+/* =========================================================
+   Layout
+   ========================================================= */
+.container {
+  width: 100%;
+  max-width: var(--width-content);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--section-y);
+}
+
+.section__head {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-4);
+  max-width: 52rem;
+  margin-bottom: var(--space-7);
+}
+
+.stack > * + * {
+  margin-top: var(--stack, var(--space-4));
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--space-4);
+  top: -100px;
+  z-index: 100;
+  padding: var(--space-3) var(--space-5);
+  background: var(--el-ink);
+  color: var(--el-white);
+  font-weight: var(--weight-bold);
+}
+
+.skip-link:focus {
+  top: var(--space-4);
+  color: var(--el-white);
+}
+
+/* =========================================================
+   Komponenter
+   ========================================================= */
+
+/* Kasse: tekst i et farvet rektangel — samme greb som logoets
+   tredje kasse med afdelingens navn. Bruges som mærkat/overlinje. */
+.box {
+  display: inline-block;
+  padding: 0.32em 0.6em 0.24em;
+  background: var(--box-bg, var(--surface-accent, var(--el-red)));
+  color: var(--box-fg, var(--surface-accent-fg, var(--el-white)));
+  font-family: var(--font-display);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  /* Safari kræver præfiks */
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.box--lg {
+  font-size: var(--text-lg);
+}
+
+.box--red {
+  --box-bg: var(--el-red);
+  --box-fg: var(--el-white);
+}
+
+.box--green {
+  --box-bg: var(--el-green);
+  --box-fg: var(--el-white);
+}
+
+.box--green-dark {
+  --box-bg: var(--el-green-dark);
+  --box-fg: var(--el-white);
+}
+
+.box--white {
+  --box-bg: var(--el-white);
+  --box-fg: var(--el-red);
+}
+
+.box--ink {
+  --box-bg: var(--el-ink);
+  --box-fg: var(--el-white);
+}
+
+.lead {
+  font-size: var(--text-lg);
+  line-height: 1.45;
+  max-width: 56ch;
+}
+
+/* Knapper: rektangulære, Maj Bold i versaler */
+.btn {
+  --btn-bg: var(--el-red);
+  --btn-fg: var(--el-white);
+  --btn-bg-hover: var(--el-red-dark);
+  --btn-fg-hover: var(--el-white);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6em;
+  min-height: 3.25rem;
+  padding: 0.9em 1.5em 0.8em;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background var(--duration-fast) var(--ease-out),
+    color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.btn:hover {
+  background: var(--btn-bg-hover);
+  color: var(--btn-fg-hover);
+}
+
+.btn--green {
+  --btn-bg: var(--el-green-dark);
+  --btn-bg-hover: #003b33;
+}
+
+.btn--white {
+  --btn-bg: var(--el-white);
+  --btn-fg: var(--el-red);
+  --btn-bg-hover: var(--el-blue-light);
+  --btn-fg-hover: var(--el-ink);
+}
+
+.btn--outline {
+  --btn-bg: transparent;
+  --btn-fg: currentcolor;
+  --btn-bg-hover: var(--surface-fg, var(--el-ink));
+  --btn-fg-hover: var(--surface-bg, var(--el-white));
+
+  box-shadow: inset 0 0 0 var(--border) currentcolor;
+}
+
+/* Pil i knapper og kort; skubbes mod højre ved hover */
+.arrow {
+  display: inline-block;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+/* Kort */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  background: var(--surface-bg, var(--el-white));
+  color: var(--surface-fg, var(--el-ink));
+  text-decoration: none;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.card.surface--white {
+  box-shadow: inset 0 0 0 var(--border) var(--el-line);
+}
+
+a.card:hover {
+  color: var(--surface-fg, var(--el-ink));
+  transform: translateY(-4px);
+}
+
+.card__title {
+  font-size: var(--text-xl);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.card__text {
+  font-size: var(--text-base);
+}
+
+.card__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  margin-top: auto;
+  padding-top: var(--space-4);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  font-size: var(--text-sm);
+  letter-spacing: 0.02em;
+}
+
+a.card:hover .card__more .arrow {
+  transform: translateX(5px);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+}
+
+/* Citat — »guillemets« som i designguiden */
+.quote {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.quote::before {
+  content: '»';
+}
+
+.quote::after {
+  content: '«';
+}
+
+/* Budskab: store, korte budskaber i Maj Bold med versaler.
+   Designguiden: linjeafstand = skriftstørrelse. */
+.budskab {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  line-height: var(--leading-caps);
+  letter-spacing: -0.01em;
+}
+
+/* Prosa (markdown) */
+.prose {
+  max-width: var(--width-prose);
+}
+
+.prose > * + * {
+  margin-top: 1.05em;
+}
+
+.prose h2 {
+  margin-top: 1.6em;
+  font-size: var(--text-2xl);
+}
+
+.prose h3 {
+  margin-top: 1.5em;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.3em;
+}
+
+.prose li + li {
+  margin-top: 0.4em;
+}
+
+.prose li::marker {
+  color: var(--el-red);
+  font-weight: var(--weight-bold);
+}
+
+.prose blockquote {
+  margin-inline: 0;
+  padding: var(--space-5) var(--space-6);
+  background: var(--el-pink);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+}
+
+.prose img {
+  width: 100%;
+}
+
+.prose hr {
+  border: 0;
+  border-top: var(--border) solid var(--el-line);
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--el-yellow);
+  padding: 0.1em 0.35em;
+}
+
+/* Meta (datoer m.m.) */
+.meta {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--surface-fg, var(--color-text-muted));
+}
+
+.rule {
+  height: var(--border);
+  border: 0;
+  margin: 0;
+  background: var(--el-line);
+}

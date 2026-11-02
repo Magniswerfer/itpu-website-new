@@ -1,0 +1,32 @@
+---
+import './page-header.css';
+
+type Surface = 'red' | 'pink' | 'yellow' | 'green-light' | 'blue-light';
+
+interface Props {
+  title: string;
+  lead?: string | undefined;
+  /** Tekst i kassen over overskriften. */
+  eyebrow: string;
+  /** Gør kassen til et link, fx tilbage til en overordnet side. */
+  eyebrowHref?: string;
+  surface: Surface;
+}
+
+const { title, lead, eyebrow, eyebrowHref, surface } = Astro.props;
+---
+
+<header class:list={['page-header', `surface--${surface}`]}>
+  <div class="container stack page-header__inner">
+    {eyebrowHref ? (
+      <a class="box" href={eyebrowHref}>
+        {eyebrow}
+      </a>
+    ) : (
+      <span class="box">{eyebrow}</span>
+    )}
+    <h1 class="page-header__title">{title}</h1>
+    {lead && <p class="lead">{lead}</p>}
+    <slot />
+  </div>
+</header>

@@ -1,0 +1,23 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import ProseSection from '../components/ui/ProseSection.astro';
+
+const side = await getEntry('sider', 'kommissorium');
+if (!side) throw new Error('Mangler src/content/sider/kommissorium.md');
+const { Content } = await render(side);
+---
+
+<Base title={side.data.title} description={side.data.undertitel}>
+  <PageHeader
+    surface="pink"
+    eyebrow="← Om udvalget"
+    eyebrowHref="/om/"
+    title={side.data.title}
+    lead={side.data.undertitel}
+  />
+  <ProseSection>
+    <Content />
+  </ProseSection>
+</Base>

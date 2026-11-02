@@ -1,0 +1,18 @@
+.program-section + .program-section {
+  margin-top: var(--space-8);
+  padding-top: var(--space-8);
+  border-top: var(--border) solid var(--el-line);
+}
+
+.program-section__title {
+  max-width: 22ch;
+  margin: var(--space-4) 0 var(--space-6);
+  font-size: var(--text-2xl);
+}
+
+.program-section__quote {
+  max-width: 34ch;
+  margin-bottom: var(--space-6);
+  color: var(--el-red);
+  font-size: var(--text-xl);
+}

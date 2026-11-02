@@ -1,0 +1,7 @@
+.principle-cards__num {
+  align-self: flex-start;
+}
+
+.principle-cards__cta {
+  justify-content: flex-end;
+}

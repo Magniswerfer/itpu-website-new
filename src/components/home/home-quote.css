@@ -1,0 +1,18 @@
+.home-quote {
+  margin-block: 0;
+}
+
+.home-quote__text {
+  max-width: 30ch;
+  color: var(--el-red);
+  font-size: var(--text-3xl);
+  line-height: 1.1;
+}
+
+.home-quote__source {
+  margin-top: var(--space-5);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}

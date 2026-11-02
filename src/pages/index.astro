@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import HomeHero from '../components/home/HomeHero.astro';
+import HomeQuote from '../components/home/HomeQuote.astro';
+import PrincipleCards from '../components/home/PrincipleCards.astro';
+import NewsTeasers from '../components/home/NewsTeasers.astro';
+import JoinBanner from '../components/home/JoinBanner.astro';
+import { getNyheder, getPrincipper } from '../lib/collections';
+
+const principper = await getPrincipper();
+const nyheder = (await getNyheder()).slice(0, 3);
+---
+
+<Base>
+  <HomeHero principper={principper} />
+  <HomeQuote />
+  <PrincipleCards principper={principper} />
+  {nyheder.length > 0 && <NewsTeasers nyheder={nyheder} />}
+  <JoinBanner />
+</Base>

@@ -1,0 +1,27 @@
+---
+import { settings } from '../../data/site';
+import './contact-details.css';
+
+const telefonLink = `tel:+45${settings.kontaktTelefon.replace(/\s/g, '')}`;
+---
+
+<dl class="contact-details">
+  {settings.email && (
+    <div>
+      <dt class="contact-details__term">Udvalget</dt>
+      <dd class="contact-details__value">
+        <a href={`mailto:${settings.email}`}>{settings.email}</a>
+      </dd>
+    </div>
+  )}
+  {settings.kontaktperson && (
+    <div>
+      <dt class="contact-details__term">Kontaktperson</dt>
+      <dd class="contact-details__value">
+        {settings.kontaktperson}
+        {settings.kontaktEmail && <a href={`mailto:${settings.kontaktEmail}`}>{settings.kontaktEmail}</a>}
+        {settings.kontaktTelefon && <a href={telefonLink}>Tlf. {settings.kontaktTelefon}</a>}
+      </dd>
+    </div>
+  )}
+</dl>

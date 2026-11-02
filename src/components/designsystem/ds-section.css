@@ -1,0 +1,33 @@
+.ds-section + .ds-section {
+  margin-top: var(--space-9);
+  padding-top: var(--space-8);
+  border-top: var(--border) solid var(--el-ink);
+}
+
+.ds-section__title {
+  margin-bottom: var(--space-5);
+  font-size: var(--text-2xl);
+}
+
+.ds-section__intro {
+  max-width: 64ch;
+  margin-bottom: var(--space-6);
+}
+
+.ds-section__subtitle {
+  margin: var(--space-7) 0 var(--space-4);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.ds-section__code {
+  margin: var(--space-5) 0 0;
+  padding: var(--space-5);
+  overflow-x: auto;
+  background: var(--el-ink);
+  color: var(--el-white);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.6;
+}

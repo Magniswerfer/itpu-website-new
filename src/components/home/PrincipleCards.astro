@@ -1,0 +1,47 @@
+---
+import { forside } from '../../data/site';
+import { principUrl } from '../../lib/links';
+import type { Princip } from '../../lib/types';
+import './principle-cards.css';
+
+interface Props {
+  principper: Princip[];
+}
+
+const { principper } = Astro.props;
+---
+
+<section class="section">
+  <div class="container">
+    <header class="section__head">
+      <span class="box">Principprogram</span>
+      <h2>{forside.principperOverskrift}</h2>
+      <p class="lead">{forside.principperTekst}</p>
+    </header>
+    <div class="grid">
+      {principper.map((princip) => (
+        <a class="card surface--white" href={principUrl(princip)}>
+          <span class="box box--red principle-cards__num">Princip {princip.data.order}</span>
+          <h3 class="card__title">{princip.data.title}</h3>
+          <p class="card__text">{princip.data.kort}</p>
+          <span class="card__more">
+            Læs mere{' '}
+            <span class="arrow" aria-hidden="true">
+              →
+            </span>
+          </span>
+        </a>
+      ))}
+      <a class="card surface--pink principle-cards__cta" href="/principprogram/">
+        <h3 class="card__title">Læs hele forslaget</h3>
+        <p class="card__text">Indledning, de fem principper og status på behandlingen i Hovedbestyrelsen.</p>
+        <span class="card__more">
+          Til principprogrammet{' '}
+          <span class="arrow" aria-hidden="true">
+            →
+          </span>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>

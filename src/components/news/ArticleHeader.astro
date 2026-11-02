@@ -1,0 +1,31 @@
+---
+import type { Nyhed } from '../../lib/types';
+import { formatDato } from '../../lib/format';
+import './article-header.css';
+
+interface Props {
+  nyhed: Nyhed;
+}
+
+const { nyhed } = Astro.props;
+const { title, date, resume, billede, billedtekst } = nyhed.data;
+---
+
+<header class="article-header">
+  <div class="container stack article-header__inner">
+    <a class="article-header__back" href="/nyheder/">
+      ← Alle nyheder
+    </a>
+    <time class="box" datetime={date.toISOString()}>
+      {formatDato(date)}
+    </time>
+    <h1 class="article-header__title">{title}</h1>
+    <p class="lead">{resume}</p>
+  </div>
+  {billede && (
+    <figure class="container article-header__figure">
+      <img src={billede} alt={billedtekst ?? ''} />
+      {billedtekst && <figcaption class="article-header__caption">{billedtekst}</figcaption>}
+    </figure>
+  )}
+</header>

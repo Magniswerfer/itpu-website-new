@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/ui/PageHeader.astro';
+import NewsList from '../../components/news/NewsList.astro';
+import { getNyheder } from '../../lib/collections';
+
+const nyheder = await getNyheder();
+const lead = 'Nyt fra udvalgets arbejde med IT-politik, digitalisering og teknologi.';
+---
+
+<Base title="Nyheder" description="Nyheder fra Enhedslistens IT-politiske udvalg.">
+  <PageHeader surface="yellow" eyebrow="ITPU" title="Nyheder" lead={lead} />
+  <section class="section">
+    <div class="container">
+      {nyheder.length > 0 ? <NewsList nyheder={nyheder} /> : <p>Der er ingen nyheder endnu.</p>}
+    </div>
+  </section>
+</Base>

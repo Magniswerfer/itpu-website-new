@@ -1,0 +1,25 @@
+.logo-showcase {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.logo-showcase__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-7);
+  overflow-x: auto;
+  background: var(--el-white);
+  box-shadow: inset 0 0 0 var(--border) var(--el-line);
+}
+
+.logo-showcase__marker {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.logo-showcase__name {
+  width: auto;
+  height: 4.5rem;
+}

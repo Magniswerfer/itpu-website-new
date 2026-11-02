@@ -1,0 +1,46 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import ProseSection from '../components/ui/ProseSection.astro';
+import ContactDetails from '../components/ui/ContactDetails.astro';
+import { settings } from '../data/site';
+import './om.css';
+
+const side = await getEntry('sider', 'om');
+if (!side) throw new Error('Mangler src/content/sider/om.md');
+const { Content } = await render(side);
+---
+
+<Base title={side.data.title} description={side.data.undertitel}>
+  <PageHeader surface="pink" eyebrow="ITPU" title={side.data.title} lead={side.data.undertitel} />
+  <ProseSection>
+    <Content />
+  </ProseSection>
+
+  <section id="vaer-med" class="section surface--green-light">
+    <div class="container join">
+      <h2>Vær med</h2>
+      <div class="stack join__body">
+        <p class="lead">
+          Er du medlem af Enhedslisten og interesseret i IT-politik? Så skriv til os — vi holder møder løbende og tager
+          gerne imod nye kræfter.
+        </p>
+        <ContactDetails />
+        <div class="btn-row">
+          {settings.email && (
+            <a class="btn" href={`mailto:${settings.email}`}>
+              Skriv til udvalget{' '}
+              <span class="arrow" aria-hidden="true">
+                →
+              </span>
+            </a>
+          )}
+          <a class="btn btn--outline" href={settings.medlemsLink}>
+            {settings.medlemsLinkTekst}
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,32 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ArticleHeader from '../../components/news/ArticleHeader.astro';
+import { getNyheder } from '../../lib/collections';
+import type { Nyhed } from '../../lib/types';
+import './article.css';
+
+export const getStaticPaths = (async () => {
+  const nyheder = await getNyheder();
+  return nyheder.map((nyhed) => ({ params: { id: nyhed.id }, props: { nyhed } }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  nyhed: Nyhed;
+}
+
+const { nyhed } = Astro.props;
+const { Content } = await render(nyhed);
+---
+
+<Base title={nyhed.data.title} description={nyhed.data.resume}>
+  <article>
+    <ArticleHeader nyhed={nyhed} />
+    <div class="container">
+      <div class="prose article-body">
+        <Content />
+      </div>
+    </div>
+  </article>
+</Base>

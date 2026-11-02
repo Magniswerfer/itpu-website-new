@@ -1,0 +1,60 @@
+---
+import DsSection from './DsSection.astro';
+import CardDemo from './CardDemo.astro';
+import './component-showcase.css';
+---
+
+<DsSection title="Komponenter">
+  <h3 class="ds-section__subtitle">Kasser</h3>
+  <p class="ds-section__intro">
+    Tekst i et farvet rektangel — samme greb som logoets navnekasse. Mærkater og overlinjer.
+  </p>
+  <div class="component-showcase__row">
+    <span class="box">Standard</span>
+    <span class="box box--green">Grøn</span>
+    <span class="box box--green-dark">Mørkegrøn</span>
+    <span class="box box--ink">Sort</span>
+    <span class="box box--lg">Stor kasse</span>
+  </div>
+
+  <h3 class="ds-section__subtitle">Knapper</h3>
+  <div class="component-showcase__row">
+    <button class="btn" type="button">
+      Primær{' '}
+      <span class="arrow" aria-hidden="true">
+        →
+      </span>
+    </button>
+    <button class="btn btn--green" type="button">
+      Mørkegrøn
+    </button>
+    <button class="btn btn--outline" type="button">
+      Kontur
+    </button>
+  </div>
+  <div class="component-showcase__row component-showcase__row--panel surface--red">
+    <button class="btn btn--white" type="button">
+      Hvid på rød
+    </button>
+    <button class="btn btn--outline" type="button">
+      Kontur på rød
+    </button>
+  </div>
+
+  <h3 class="ds-section__subtitle">Kort</h3>
+  <CardDemo />
+
+  <h3 class="ds-section__subtitle">Prosa</h3>
+  <div class="prose">
+    <p>
+      Markdown fra CMS'et sættes med <code>.prose</code>. Links ser <a href="/designsystem/">sådan her</a> ud.
+    </p>
+    <ul>
+      <li>Punktopstillinger har røde punkter</li>
+      <li>
+        Fremhæv med <strong>bold</strong>, ikke kursiv
+      </li>
+    </ul>
+    <blockquote>Citatblokke får en rosa flade.</blockquote>
+  </div>
+</DsSection>

@@ -1,0 +1,21 @@
+.type-specimen__message {
+  color: var(--el-red);
+  font-size: var(--text-4xl);
+}
+
+.type-specimen__h2 {
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-caps);
+  text-transform: uppercase;
+}
+
+.type-specimen__h3 {
+  font-size: var(--text-xl);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-heading);
+}
+
+.type-specimen__body {
+  max-width: 64ch;
+}

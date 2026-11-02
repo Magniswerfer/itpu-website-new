@@ -1,0 +1,44 @@
+---
+import Logo from '../ui/Logo.astro';
+import './header.css';
+
+const links = [
+  { href: '/principprogram/', label: 'Principprogram' },
+  { href: '/nyheder/', label: 'Nyheder' },
+  { href: '/om/', label: 'Om udvalget' },
+];
+const path = Astro.url.pathname;
+const isActive = (href: string): boolean => path.startsWith(href);
+---
+
+<header class="site-header" data-site-header>
+  <div class="container site-header__inner">
+    <Logo />
+    <nav class="site-nav" aria-label="Hovedmenu">
+      <button class="site-nav__toggle" type="button" aria-expanded="false" aria-controls="hovedmenu" hidden>
+        <span class="site-nav__icon" aria-hidden="true"></span>
+        Menu
+      </button>
+      <ul id="hovedmenu" class="site-nav__list">
+        {links.map((link) => (
+          <li>
+            <a class="site-nav__link" href={link.href} aria-current={isActive(link.href) ? 'page' : undefined}>
+              {link.label}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a class="btn site-nav__cta" href="/om/#vaer-med">
+            Vær med
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  import { initMenu } from '../../scripts/menu';
+
+  initMenu();
+</script>

@@ -1,0 +1,47 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import ProgramToc from '../components/program/ProgramToc.astro';
+import ProgramSection from '../components/program/ProgramSection.astro';
+import { getPrincipper } from '../lib/collections';
+import { principAnker } from '../lib/links';
+import './principprogram.css';
+
+const side = await getEntry('sider', 'principprogram');
+if (!side) throw new Error('Mangler src/content/sider/principprogram.md');
+const { Content: Indledning } = await render(side);
+const principper = await getPrincipper();
+const sektioner = await Promise.all(
+  principper.map(async (princip) => ({ princip, Content: (await render(princip)).Content })),
+);
+---
+
+<Base title={side.data.title} description={side.data.undertitel}>
+  <PageHeader surface="red" eyebrow="IT-Politisk Udvalg" title={side.data.title} lead={side.data.undertitel}>
+    {side.data.status && (
+      <p class="program-status">
+        <strong>Status:</strong> {side.data.status}
+      </p>
+    )}
+  </PageHeader>
+
+  <div class="container program-layout">
+    <ProgramToc principper={principper} />
+    <div>
+      <ProgramSection id="indledning" title="Indledning">
+        <Indledning />
+      </ProgramSection>
+      {sektioner.map(({ princip, Content }) => (
+        <ProgramSection
+          id={principAnker(princip)}
+          title={princip.data.title}
+          label={`Princip ${String(princip.data.order)}`}
+          citat={princip.data.citat}
+        >
+          <Content />
+        </ProgramSection>
+      ))}
+    </div>
+  </div>
+</Base>

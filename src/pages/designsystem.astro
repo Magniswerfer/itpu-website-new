@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+import LogoShowcase from '../components/designsystem/LogoShowcase.astro';
+import ColorPalette from '../components/designsystem/ColorPalette.astro';
+import SurfaceShowcase from '../components/designsystem/SurfaceShowcase.astro';
+import TypeSpecimen from '../components/designsystem/TypeSpecimen.astro';
+import ComponentShowcase from '../components/designsystem/ComponentShowcase.astro';
+
+const lead =
+  "Bygget på Enhedslistens Designguide 2.0 (2024): farver, skrift og logo følger guiden. Komponenterne er ITPU's egne. Tokens ligger i src/styles/tokens.css, komponenterne i src/styles/global.css.";
+---
+
+<Base title="Designsystem" description="ITPU's designsystem, baseret på Enhedslistens designguide.">
+  <PageHeader surface="yellow" eyebrow="Designsystem" title="ITPU designsystem" lead={lead} />
+  <div class="container section">
+    <LogoShowcase />
+    <ColorPalette />
+    <SurfaceShowcase />
+    <TypeSpecimen />
+    <ComponentShowcase />
+  </div>
+</Base>

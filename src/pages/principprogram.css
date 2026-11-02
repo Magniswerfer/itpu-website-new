@@ -1,0 +1,19 @@
+.program-status {
+  max-width: 60ch;
+  padding: var(--space-4) var(--space-5);
+  background: var(--el-blue-light);
+  color: var(--el-ink);
+}
+
+.program-layout {
+  display: grid;
+  gap: var(--space-7);
+  padding-block: var(--section-y);
+}
+
+@media (width >= 64rem) {
+  .program-layout {
+    grid-template-columns: 17rem 1fr;
+    gap: var(--space-9);
+  }
+}

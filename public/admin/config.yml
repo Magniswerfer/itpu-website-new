@@ -1,0 +1,132 @@
+# Sveltia CMS — https://github.com/sveltia/sveltia-cms
+# Lokalt: kør `npm run dev`, åbn http://localhost:4321/admin/ i Chrome/Edge
+# og vælg "Work with Local Repository".
+backend:
+  name: github
+  repo: magniswerfer/itpu-website-new
+  branch: main
+  # Til GitHub-login uden token: deploy Sveltia CMS Authenticator
+  # (https://github.com/sveltia/sveltia-cms-auth) og indsæt URL'en her.
+  # base_url: https://sveltia-cms-auth.<konto>.workers.dev
+
+publish_mode: simple
+media_folder: public/uploads
+public_folder: /uploads
+site_url: https://itpu.example.dk
+logo_url: /images/enhedslisten-markoer.svg
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: '-'
+
+collections:
+  - name: nyheder
+    label: Nyheder
+    label_singular: Nyhed
+    description: Nyheder fra udvalget. Vises på forsiden og under /nyheder/.
+    folder: src/content/nyheder
+    extension: md
+    format: frontmatter
+    create: true
+    slug: '{{slug}}'
+    sortable_fields: [date, title]
+    summary: '{{title}} ({{date | date("YYYY-MM-DD")}})'
+    fields:
+      - { name: title, label: Overskrift, widget: string }
+      - {
+          name: date,
+          label: Dato,
+          widget: datetime,
+          time_format: false,
+          date_format: 'YYYY-MM-DD',
+          format: 'YYYY-MM-DD',
+        }
+      - { name: resume, label: Resumé, widget: text, hint: 'Kort tekst til lister og deling (1–2 sætninger).' }
+      - { name: billede, label: Billede, widget: image, required: false }
+      - { name: billedtekst, label: Billedtekst / alt-tekst, widget: string, required: false }
+      - { name: kladde, label: Kladde (skjult på sitet), widget: boolean, default: false }
+      - { name: body, label: Tekst, widget: markdown }
+
+  - name: program
+    label: Principprogram
+    label_singular: Princip
+    description: Principperne i IT-principprogrammet. Rækkefølgen styres af feltet "Nummer".
+    folder: src/content/program
+    extension: md
+    format: frontmatter
+    create: true
+    slug: '{{fields.order | default("0")}}-{{slug}}'
+    sortable_fields: [order, title]
+    summary: '{{order}}. {{title}}'
+    fields:
+      - { name: title, label: Overskrift, widget: string }
+      - { name: order, label: Nummer, widget: number, value_type: int, min: 1 }
+      - { name: kort, label: Kort beskrivelse, widget: text, hint: 'Vises på kortene på forsiden.' }
+      - { name: citat, label: Fremhævet citat, widget: text, required: false }
+      - { name: body, label: Tekst, widget: markdown }
+
+  - name: sider
+    label: Sider
+    files:
+      - name: principprogram
+        label: Principprogram — indledning
+        file: src/content/sider/principprogram.md
+        fields:
+          - { name: title, label: Overskrift, widget: string }
+          - { name: undertitel, label: Undertitel, widget: text, required: false }
+          - { name: status, label: Status, widget: text, required: false, hint: 'Fx hvor forslaget er i behandlingen.' }
+          - { name: body, label: Indledning, widget: markdown }
+      - name: om
+        label: Om udvalget
+        file: src/content/sider/om.md
+        fields:
+          - { name: title, label: Overskrift, widget: string }
+          - { name: undertitel, label: Undertitel, widget: text, required: false }
+          - { name: body, label: Tekst, widget: markdown }
+      - name: kommissorium
+        label: Kommissorium
+        file: src/content/sider/kommissorium.md
+        fields:
+          - { name: title, label: Overskrift, widget: string }
+          - { name: undertitel, label: Undertitel, widget: text, required: false }
+          - { name: body, label: Tekst, widget: markdown }
+
+  - name: indstillinger
+    label: Indstillinger
+    files:
+      - name: forside
+        label: Forside
+        file: src/data/forside.json
+        format: json
+        fields:
+          - { name: heroMaerkat, label: Hero — mærkat, widget: string }
+          - { name: heroOverskrift, label: Hero — overskrift, widget: string }
+          - { name: heroTekst, label: Hero — tekst, widget: text }
+          - { name: heroKnap, label: Hero — knaptekst, widget: string }
+          - { name: principperOverskrift, label: Principper — overskrift, widget: string }
+          - { name: principperTekst, label: Principper — tekst, widget: text }
+          - { name: citat, label: Citat, widget: text }
+          - { name: meldDigOverskrift, label: Vær med — overskrift, widget: string }
+          - { name: meldDigTekst, label: Vær med — tekst, widget: text }
+      - name: settings
+        label: Generelt
+        file: src/data/settings.json
+        format: json
+        fields:
+          - { name: sitenavn, label: Sitenavn (kort), widget: string }
+          - { name: fuldtNavn, label: Fulde navn, widget: string }
+          - { name: beskrivelse, label: Beskrivelse (SEO og sidefod), widget: text }
+          - { name: email, label: Udvalgets e-mail, widget: string, required: false }
+          - { name: kontaktperson, label: Kontaktperson — navn, widget: string, required: false }
+          - { name: kontaktEmail, label: Kontaktperson — e-mail, widget: string, required: false }
+          - { name: kontaktTelefon, label: Kontaktperson — telefon, widget: string, required: false }
+          - { name: medlemsLink, label: Link til indmeldelse, widget: string }
+          - { name: medlemsLinkTekst, label: Tekst på indmeldelseslink, widget: string }
+          - name: sociale
+            label: Sociale medier
+            widget: list
+            required: false
+            fields:
+              - { name: navn, label: Navn, widget: string }
+              - { name: url, label: URL, widget: string }

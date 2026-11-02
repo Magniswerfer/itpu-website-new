@@ -1,0 +1,63 @@
+---
+import Logo from '../ui/Logo.astro';
+import { settings } from '../../data/site';
+import './footer.css';
+
+const year = new Date().getFullYear();
+const siteLinks = [
+  { href: '/principprogram/', label: 'Principprogram' },
+  { href: '/nyheder/', label: 'Nyheder' },
+  { href: '/om/', label: 'Om udvalget' },
+  { href: '/kommissorium/', label: 'Kommissorium' },
+];
+---
+
+<footer class="site-footer surface--green-dark">
+  <div class="container site-footer__grid">
+    <div class="stack site-footer__intro">
+      <Logo size="1.6rem" />
+      <p class="site-footer__about">{settings.beskrivelse}</p>
+    </div>
+    <nav aria-labelledby="footer-site">
+      <h2 id="footer-site" class="site-footer__heading">
+        Sitet
+      </h2>
+      <ul class="site-footer__list">
+        {siteLinks.map((link) => (
+          <li>
+            <a href={link.href}>{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+    <div>
+      <h2 class="site-footer__heading">Kontakt</h2>
+      <ul class="site-footer__list">
+        {settings.email && (
+          <li>
+            <a href={`mailto:${settings.email}`}>{settings.email}</a>
+          </li>
+        )}
+        {settings.kontaktperson && <li>Kontaktperson: {settings.kontaktperson}</li>}
+        <li>
+          <a href={settings.medlemsLink}>{settings.medlemsLinkTekst}</a>
+        </li>
+        {settings.sociale.map((social) => (
+          <li>
+            <a href={social.url} rel="me noopener">
+              {social.navn}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+  <div class="container site-footer__bottom">
+    <span>
+      © {year} {settings.fuldtNavn}
+    </span>
+    <span>
+      Bygget med åben software · <a href="https://github.com/magniswerfer/itpu-website-new">Kildekode (AGPL)</a>
+    </span>
+  </div>
+</footer>

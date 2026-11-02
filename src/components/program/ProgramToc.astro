@@ -1,0 +1,33 @@
+---
+import { principAnker } from '../../lib/links';
+import type { Princip } from '../../lib/types';
+import './program-toc.css';
+
+interface Props {
+  principper: Princip[];
+}
+
+const { principper } = Astro.props;
+---
+
+<div class="program-toc">
+  <nav class="program-toc__inner" aria-labelledby="toc-title">
+    <h2 id="toc-title" class="program-toc__title">
+      Indhold
+    </h2>
+    <ol class="program-toc__list">
+      <li>
+        <a class="program-toc__link" href="#indledning">
+          Indledning
+        </a>
+      </li>
+      {principper.map((princip) => (
+        <li>
+          <a class="program-toc__link" href={`#${principAnker(princip)}`}>
+            {princip.data.title}
+          </a>
+        </li>
+      ))}
+    </ol>
+  </nav>
+</div>

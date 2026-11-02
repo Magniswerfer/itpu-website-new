@@ -1,0 +1,22 @@
+---
+import './program-section.css';
+
+interface Props {
+  id: string;
+  title: string;
+  /** Fx "Princip 1" — udelades for indledningen. */
+  label?: string | undefined;
+  citat?: string | undefined;
+}
+
+const { id, title, label, citat } = Astro.props;
+---
+
+<section id={id} class="program-section">
+  {label && <span class="box box--red">{label}</span>}
+  <h2 class="program-section__title">{title}</h2>
+  {citat && <blockquote class="quote program-section__quote">{citat}</blockquote>}
+  <div class="prose">
+    <slot />
+  </div>
+</section>

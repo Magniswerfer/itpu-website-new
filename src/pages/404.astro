@@ -1,0 +1,19 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/ui/PageHeader.astro';
+---
+
+<Base title="Siden findes ikke">
+  <PageHeader
+    surface="blue-light"
+    eyebrow="Fejl 404"
+    title="Siden findes ikke"
+    lead="Siden er flyttet eller har aldrig eksisteret."
+  >
+    <div class="btn-row">
+      <a class="btn" href="/">
+        Til forsiden
+      </a>
+    </div>
+  </PageHeader>
+</Base>

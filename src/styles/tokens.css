@@ -1,0 +1,126 @@
+/*
+ * ITPU designsystem — tokens
+ *
+ * Bygger på Enhedslistens Designguide 2.0 (2024) og farveark:
+ *   - Primære farver: rød og grøn. Én af dem skal altid være til stede.
+ *   - Sekundære farver: rosa, lysegrøn, lyseblå, mørkegrøn, lysegul.
+ *     Bruges til flader/kasser/baggrunde og til tekst på rød/grøn bund.
+ *   - Skrift: Maj (Light, Regular, Bold). Ingen kursiv — fremhæv med
+ *     bold, STORE BOGSTAVER eller farve.
+ */
+
+@font-face {
+  font-family: Maj;
+  src: url('/fonts/Maj-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Maj;
+  src: url('/fonts/Maj-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: Maj;
+  src: url('/fonts/Maj-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ---------- Primære farver ---------- */
+  --el-red: #d0004d; /* RGB 208-0-78 · Pantone 7636C */
+  --el-green: #159f6b; /* RGB 21-160-107 · Pantone 2417C */
+
+  /* ---------- Sekundære farver ---------- */
+  --el-pink: #f9d1d9; /* RGB 249-210-217 */
+  --el-green-light: #c8e2c2; /* RGB 200-226-194 */
+  --el-blue-light: #bce3fa; /* RGB 188-228-250 */
+  --el-green-dark: #005247; /* RGB 0-83-71 */
+  --el-yellow: #fffad2; /* RGB 255-250-210 */
+
+  /* ---------- Neutrale + afledte (kun til UI-tilstande) ---------- */
+  --el-ink: #1d1d1b;
+  --el-ink-70: #55554f;
+  --el-line: #dcdcd6;
+  --el-white: #fff;
+  --el-red-dark: #a8003e; /* hover på rød */
+  --el-green-text: #0b7a50; /* grøn tekst på hvid (AA) */
+
+  /* ---------- Semantiske ---------- */
+  --color-bg: var(--el-white);
+  --color-text: var(--el-ink);
+  --color-text-muted: var(--el-ink-70);
+  --color-heading: var(--el-ink);
+  --color-accent: var(--el-red);
+  --color-link: var(--el-red);
+  --color-link-hover: var(--el-red-dark);
+  --color-border: var(--el-line);
+  --color-focus: var(--el-blue-light);
+  --color-focus-ring: var(--el-ink);
+
+  /* ---------- Typografi ---------- */
+  --font-body: 'Maj', Helvetica, Arial, sans-serif;
+  --font-display: 'Maj', Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Mono', 'Roboto Mono', Menlo, Consolas, monospace;
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-bold: 700;
+
+  /* Flydende typeskala (360px → 1440px) */
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1.1875rem;
+  --text-lg: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1.3rem + 0.9vw, 2rem);
+  --text-2xl: clamp(1.875rem, 1.5rem + 1.7vw, 2.875rem);
+  --text-3xl: clamp(2.25rem, 1.6rem + 2.9vw, 4rem);
+  --text-4xl: clamp(2.75rem, 1.7rem + 4.8vw, 6rem);
+
+  /* Designguiden: versal-budskaber har linjeafstand = skriftstørrelse,
+     øvrige overskrifter ca. 120 %. */
+  --leading-caps: 1;
+  --leading-heading: 1.2;
+  --leading-body: 1.55;
+
+  /* ---------- Rum ---------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --section-y: clamp(3.5rem, 2rem + 5vw, 7rem);
+  --gutter: clamp(1rem, 0.4rem + 2.6vw, 2.5rem);
+
+  /* ---------- Layout ---------- */
+  --width-prose: 64ch;
+  --width-content: 78rem;
+
+  /* ---------- Form ---------- */
+
+  /* Logoet er bygget af rektangler; UI'et følger med skarpe hjørner. */
+  --radius: 0;
+  --border: 2px;
+
+  /* ---------- Bevægelse ---------- */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --duration-fast: 140ms;
+  --duration-base: 240ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+  }
+}

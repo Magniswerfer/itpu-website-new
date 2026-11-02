@@ -1,0 +1,11 @@
+.component-showcase__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.component-showcase__row--panel {
+  margin-top: var(--space-4);
+  padding: var(--space-5);
+}
